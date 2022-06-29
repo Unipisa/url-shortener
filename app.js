@@ -7,10 +7,12 @@ const mongoose = require('mongoose')
 const convertController = require('./controllers/convert')
 const homeController = require('./controllers/home')
 
-const port = 3000
+const PORT = process.env.PORT || 3000
 
 // connect mongoose with database
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/url', { useNewUrlParser: true })
+const MONGOOSE_URI = process.env.MONGODB_URI || 'mongodb://localhost/url'
+console.log(`Connecting to database ${MONGOOSE_URI} ...`)
+mongoose.connect(MONGOOSE_URI, { useNewUrlParser: true })
 
 const db = mongoose.connection
 
@@ -22,6 +24,9 @@ db.on('error', () => {
 // successful connection
 db.once('open', () => {
   console.log('mongodb connected!')
+  app.listen(PORT, () => {
+    console.log(`App is running: https://localhost:${PORT}`)
+  })
 })
 
 // Include user model
@@ -39,7 +44,3 @@ app.get('/', homeController)
 app.get('/convert', convertController.getShortened)
 
 app.get('/:shortenedUrl', convertController.getOriginal)
-
-app.listen(process.env.PORT || port, () => {
-  console.log('App is running')
-})
