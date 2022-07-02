@@ -12,10 +12,10 @@
     {{/if}}
     <div class="form-group w-100">
       <label for="url" class="sr-only"></label>
-      <input type="url" name="url" id="url" class="form-control" pattern="https?://.+" value="{{inputUrl}}"
+      <input type="url" name="url" id="url" class="form-control" pattern="{{ URL_REGEX }}" value="{{inputUrl}}"
         placeholder="Your Website URL" required>
       <div class="invalid-feedback">
-        Please enter a valid url starting with: http:// or https://
+        {{ URL_ERROR_MESSAGE }}
       </div>
     </div>
     <div class="input-group w-100 d-none" id="url-result">

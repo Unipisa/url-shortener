@@ -18,18 +18,23 @@ urlForm.addEventListener('submit', event => {
   event.preventDefault()
   urlForm.classList.add('was-validated')
   if (!inputUrl.checkValidity()) { return }
-  fetch(`${window.location.href}convert?url=${inputUrl.value}`)
-    .then(data => {
-      return data.json()
-    })
+  inputUrl.classList.remove("is-invalid");
+  fetch(`${window.location.href}convert/?url=${inputUrl.value}`)
+    .then(data => data.json())
     .then(shortenedUrl => {
-      urlResult.classList.remove('d-none')
-      urlResult.classList.add('animated', 'bounceIn')
-      urlResult.addEventListener('animationend', handleAnimationEnd)
-      urlResult.querySelector('[name="result"]').value = `${window.location.href}${shortenedUrl.url}`
+      if (shortenedUrl.ok) {
+        console.log("shortenedUrl: " + JSON.stringify(shortenedUrl));
+        urlResult.classList.remove('d-none')
+        urlResult.classList.add('animated', 'bounceIn')
+        urlResult.addEventListener('animationend', handleAnimationEnd)
+        urlResult.querySelector('[name="result"]').value = `${window.location.href}${shortenedUrl.url}`
 
-      // add event listener to copy button
-      document.getElementById('copy-btn').addEventListener('click', copyUrl)
+        // add event listener to copy button
+        document.getElementById('copy-btn').addEventListener('click', copyUrl)
+      } else {
+        console.log("BAD request!");
+        inputUrl.classList.add("is-invalid");
+      }
     })
 })
 
