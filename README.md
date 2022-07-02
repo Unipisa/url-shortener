@@ -20,6 +20,12 @@ ___
 5. User can reset the input columns for next URL generation 
 6. User can be redirected to the original URL by visiting the shortened URL
 
+## Admin Stories
+1. Admin can configure validation of URLS to restrict urls redirections. Eg:
+```
+    export URLSHORTENER_URL_REGEXP="^https?://[^/]*.mydomain.com(/.*|)$"
+    export URLSHORTENER_URL_ERROR_MESSAGE="url must refer to mydomain.com"
+```
 ___
 
 ## Installation
@@ -41,34 +47,33 @@ Clone this repository to your local machine
 $ git clone https://github.com/smallpaes/url-shortener.git
 ```
 
-
 ### Setup
 
-**1. Enter the project folder**
-
-```
-$ cd url-shortener
-```
-
-**2. Install npm packages**
+** Install npm packages**
 
 ```
 $ npm install
 ```
 
-**3. Activate the server**
+** Start a database server**
+
+```
+$ docker-compose up -d
+```
+
+** Activate the web server**
 
 ```
 $ npm run dev
 ```
 
-**4. Find the message for successful activation**
+** Wait the message for successful activation**
 
 ```
 > App is running
 > mongodb connected!
 ```
-You may visit the application on browser with the URL: http://localhost:3000
+Now you may visit the application on browser at URL: http://localhost:3000
 
 ___
 

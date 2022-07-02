@@ -25,9 +25,9 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected!')
   app.listen(PORT, () => {
-    console.log(`App is running: https://localhost:${PORT}`)
     console.log(`URLSHORTENER_URL_REGEX: ${convertController.URL_REGEX}`)
     console.log(`URLSHORTENER_URL_ERROR_MESSAGE: ${convertController.URL_ERROR_MESSAGE}`)
+    console.log(`App is running: http://localhost:${PORT}`)
   })
 })
 
