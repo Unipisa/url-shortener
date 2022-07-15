@@ -25,7 +25,7 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected!')
   app.listen(PORT, () => {
-    console.log(`App is running: https://localhost:${PORT}`)
+    console.log(`App is running: http://localhost:${PORT}`)
   })
 })
 

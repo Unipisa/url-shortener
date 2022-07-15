@@ -1,13 +1,6 @@
 # URL Shortener 🔗
 A simple web application built with Node.js, Express, and MongoDB for you to readily get a shortened URL to use
 
-
-### Trial in this project 🤠
-**To increase user experience**
-+ [Animate.css](https://daneden.github.io/animate.css/) is used to show animation for certain actions
-
-___
-
 ## Project First Look
 ![Application Screen Shot in GIF](url-shortener.gif)
 
@@ -65,11 +58,9 @@ $ npm run dev
 **4. Find the message for successful activation**
 
 ```
-> App is running
 > mongodb connected!
+> App is running: https://localhost:3000
 ```
-You may visit the application on browser with the URL: http://localhost:3000
-
 ___
 
 
