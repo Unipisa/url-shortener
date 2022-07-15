@@ -13,6 +13,12 @@ A simple web application built with Node.js, Express, and MongoDB for you to rea
 5. User can reset the input columns for next URL generation 
 6. User can be redirected to the original URL by visiting the shortened URL
 
+## Admin Stories
+1. Admin can configure validation of URLS to restrict urls redirections. Eg:
+```
+    export URLSHORTENER_URL_REGEXP="^https?://[^/]*.mydomain.com(/.*|)$"
+    export URLSHORTENER_URL_ERROR_MESSAGE="url must refer to mydomain.com"
+```
 ___
 
 ## Installation
@@ -25,51 +31,54 @@ The following instructions will get you a copy of the project and all the settin
 - [Node.js v10.16.0](https://nodejs.org/en/download/)
 - [MongoDB v4.0.10](https://www.mongodb.com/download-center/community)
 
-
 ### Clone
 
 Clone this repository to your local machine
 
 ```
-$ git clone https://github.com/smallpaes/url-shortener.git
+$ git clone git@github.com:Unipisa/url-shortener.git
 ```
-
 
 ### Setup
 
-**1. Enter the project folder**
-
-```
-$ cd url-shortener
-```
-
-**2. Install npm packages**
+** Install npm packages**
 
 ```
 $ npm install
 ```
 
-**3. Activate the server**
+** Start a database server**
+
+```
+$ docker-compose up -d
+```
+
+** Activate the web server**
 
 ```
 $ npm run dev
 ```
 
-**4. Find the message for successful activation**
+** Wait the message for successful activation**
 
 ```
 > mongodb connected!
 > App is running: https://localhost:3000
 ```
+Now you may visit the application on browser at URL: http://localhost:3000
+
+
 ___
 
 
 ## FAQ
 - **Can I try this app online?**
-    - Yes, kindly visit [https://ancient-cove-62781.herokuapp.com/](https://ancient-cove-62781.herokuapp.com/)
+    - Yes, kindly visit [https://go.dm.unipi.it/]
+    - or the original (forked from) version [https://ancient-cove-62781.herokuapp.com/](https://ancient-cove-62781.herokuapp.com/)
 
 
 ___
 
 ## Authors
-[Mike Huang](https://github.com/smallpaes)
+- forked project [Emanuele Paolini](https://github.com/paolini)
+- original project [Mike Huang](https://github.com/smallpaes)

@@ -1,0 +1,25 @@
+version: "2.1"
+
+services:
+  db:
+    image: mongo:latest
+    restart: unless-stopped
+    networks:
+      - backend
+    volumes:
+      - ./db:/data/
+      
+  urlshortener:
+    image: paolini/url-shortener:latest
+    restart: unless-stopped
+    environment: 
+      - MONGODB_URI=mongodb://db/url
+    networks:
+      - backend
+    ports:
+      - 3000:3000
+
+networks:
+  backend:
+#  web:
+#    external: true

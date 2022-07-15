@@ -2,6 +2,7 @@ const urlForm = document.querySelector('form')
 const urlResult = document.getElementById('url-result')
 const inputUrl = urlForm.querySelector('[name="url"]')
 const resetBtn = document.getElementById('reset')
+const qrCodeCanvas = document.getElementById("qrCodeCanvas")
 
 function copyUrl() {
   var copyText = document.getElementById("result");
@@ -18,18 +19,34 @@ urlForm.addEventListener('submit', event => {
   event.preventDefault()
   urlForm.classList.add('was-validated')
   if (!inputUrl.checkValidity()) { return }
-  fetch(`${window.location.href}convert?url=${inputUrl.value}`)
-    .then(data => {
-      return data.json()
-    })
+  inputUrl.classList.remove("is-invalid");
+  fetch(`${window.location.href}convert/?url=${inputUrl.value}`)
+    .then(data => data.json())
     .then(shortenedUrl => {
-      urlResult.classList.remove('d-none')
-      urlResult.classList.add('animated', 'bounceIn')
-      urlResult.addEventListener('animationend', handleAnimationEnd)
-      urlResult.querySelector('[name="result"]').value = `${window.location.href}${shortenedUrl.url}`
+      if (shortenedUrl.ok) {
+        console.log("shortenedUrl: " + JSON.stringify(shortenedUrl));
+        const finalUrl = `${window.location.href}${shortenedUrl.url}`
+        urlResult.classList.remove('d-none')
+        urlResult.classList.add('animated', 'bounceIn')
+        urlResult.addEventListener('animationend', handleAnimationEnd)
+        urlResult.querySelector('[name="result"]').value = finalUrl
+        
 
-      // add event listener to copy button
-      document.getElementById('copy-btn').addEventListener('click', copyUrl)
+        // add event listener to copy button
+        document.getElementById('copy-btn').addEventListener('click', copyUrl)
+
+        // create qr code
+        const settings = { ...QR_CODE_SETTINGS, data: finalUrl }
+        console.log("settings: " + JSON.stringify(settings));
+        const qrCode = new QRCodeStyling(settings);
+        qrCode.append(qrCodeCanvas);
+        qrCodeCanvas.onclick = event => {
+          qrCode.download({ name: "url-shortener", extension: "png" });
+        }
+      } else {
+        console.log("BAD request!");
+        inputUrl.classList.add("is-invalid");
+      }
     })
 })
 

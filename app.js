@@ -2,10 +2,10 @@ const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const { URL_REGEX } = require('./controllers/convert')
 
 // Include controller
 const convertController = require('./controllers/convert')
-const homeController = require('./controllers/home')
 
 const PORT = process.env.PORT || 3000
 
@@ -25,6 +25,8 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected!')
   app.listen(PORT, () => {
+    console.log(`URLSHORTENER_URL_REGEX: ${convertController.URL_REGEX}`)
+    console.log(`URLSHORTENER_URL_ERROR_MESSAGE: ${convertController.URL_ERROR_MESSAGE}`)
     console.log(`App is running: http://localhost:${PORT}`)
   })
 })
@@ -39,8 +41,8 @@ app.set('view engine', 'handlebars')
 // serve static files
 app.use(express.static('public'))
 
-app.get('/', homeController)
+app.get('/', convertController.getHome)
 
-app.get('/convert', convertController.getShortened)
+app.get('/convert/', convertController.getShortened)
 
 app.get('/:shortenedUrl', convertController.getOriginal)

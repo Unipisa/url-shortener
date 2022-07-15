@@ -12,10 +12,10 @@
     {{/if}}
     <div class="form-group w-100">
       <label for="url" class="sr-only"></label>
-      <input type="url" name="url" id="url" class="form-control" pattern="https?://.+" value="{{inputUrl}}"
+      <input type="url" name="url" id="url" class="form-control" pattern="{{ SETTINGS.URL_REGEX }}" value="{{inputUrl}}"
         placeholder="Your Website URL" required>
       <div class="invalid-feedback">
-        Please enter a valid url starting with: http:// or https://
+        {{ SETTINGS.URL_ERROR_MESSAGE }}
       </div>
     </div>
     <div class="input-group w-100 d-none" id="url-result">
@@ -24,6 +24,7 @@
         <button class="btn btn-outline-secondary" type="button" id="copy-btn">Copy</button>
       </div>
     </div>
+    <div id="qrCodeCanvas"></div>
     <div class="buttons d-flex w-100 justify-content-center mt-3">
       <button class="btn btn-primary mr-4 px-5" id="submit">Submit</button>
       <button class="btn btn-danger px-5" id="reset" type="button">Reset</button>
