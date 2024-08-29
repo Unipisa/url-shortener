@@ -1,13 +1,6 @@
 # URL Shortener 🔗
 A simple web application built with Node.js, Express, and MongoDB for you to readily get a shortened URL to use
 
-
-### Trial in this project 🤠
-**To increase user experience**
-+ [Animate.css](https://daneden.github.io/animate.css/) is used to show animation for certain actions
-
-___
-
 ## Project First Look
 ![Application Screen Shot](screenshot.png)
 
@@ -40,13 +33,12 @@ The following instructions will get you a copy of the project and all the settin
 - [Node.js v10.16.0](https://nodejs.org/en/download/)
 - [MongoDB v4.0.10](https://www.mongodb.com/download-center/community)
 
-
 ### Clone
 
 Clone this repository to your local machine
 
 ```
-$ git clone https://github.com/Unipisa/url-shortener.git
+$ git clone git@github.com:Unipisa/url-shortener.git
 ```
 
 ### Setup
@@ -72,8 +64,8 @@ $ npm run dev
 ** Wait the message for successful activation**
 
 ```
-> App is running
 > mongodb connected!
+> App is running: https://localhost:3000
 ```
 Now you may visit the application on browser at URL: http://localhost:3000
 
@@ -86,7 +78,8 @@ ___
 
 ## FAQ
 - **Can I try this app online?**
-    - Yes, kindly visit [https://ancient-cove-62781.herokuapp.com/](https://ancient-cove-62781.herokuapp.com/)
+    - Yes, kindly visit [https://go.dm.unipi.it/]
+    - or the original (forked from) version [https://ancient-cove-62781.herokuapp.com/](https://ancient-cove-62781.herokuapp.com/)
 
 
 ___
