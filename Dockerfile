@@ -22,5 +22,8 @@ CMD [ "npm", "start" ]
 
 # To build the image:
 # $ docker build . -t paolini/url-shortener
+ 
+# To push the image:
+# $ docker push paolini/url-shortener
 
 
