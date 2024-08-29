@@ -20,7 +20,7 @@ urlForm.addEventListener('submit', event => {
   urlForm.classList.add('was-validated')
   if (!inputUrl.checkValidity()) { return }
   inputUrl.classList.remove("is-invalid");
-  fetch(`${window.location.href}convert/?url=${inputUrl.value}`)
+  fetch(`${window.location.href}convert/?url=${encodeURIComponent(inputUrl.value)}`)
     .then(data => data.json())
     .then(shortenedUrl => {
       if (shortenedUrl.ok) {
